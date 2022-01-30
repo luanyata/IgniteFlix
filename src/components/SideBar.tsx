@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { api } from '../services/api';
 import { Button } from './Button';
 import '../styles/sidebar.scss';
@@ -21,7 +21,7 @@ export function SideBar(props: SidebarProps) {
 
   const [genres, setGenres] = useState<GenreResponseProps[]>([]);
 
-  useEffect(() => {
+  useMemo(() => {
     api.get<GenreResponseProps[]>('genres').then(response => {
       setGenres(response.data);
     });

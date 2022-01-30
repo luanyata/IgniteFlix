@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { api } from '../services/api';
 import { MovieCard } from './MovieCard';
 import '../styles/content.scss';
@@ -25,7 +25,7 @@ export function Content({ selectedGenre }: ContentProps) {
 
   const [movies, setMovies] = useState<MovieProps[]>([]);
 
-  useEffect(() => {
+  useMemo(() => {
     api.get<MovieProps[]>(`movies/?Genre_id=${selectedGenre.id}`).then(response => {
       setMovies(response.data);
     });
